@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Employee Management</title>
+    <link rel="icon" href="https://thumbs.dreamstime.com/b/employee-insurance-icon-employee-insurance-icon-flat-style-vector-eps-157851355.jpg" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .employee-card {
+      height: 260px;
+      display: flex;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+    }
+
+    .employee-img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .employee-left {
+      width: 40%;
+    }
+
+    .employee-right {
+      width: 60%;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .btn-rounded {
+      border-radius: 30px;
+      padding: 6px 20px;
+      font-weight: 500;
+    }
+
+  </style>
+</head>
+<body>
+
+    <%- include('partials/header') %>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <% employees.forEach(function(emp) { %>
+        <div class="col-md-6 col-lg-4">
+          <div class="employee-card bg-white">
+            <div class="employee-left">
+              <img src="<%= emp.image %>" alt="employee" class="employee-img">
+            </div>
+            <div class="employee-right">
+              <div>
+                <h5 class="fw-bold"><%= emp.name %></h5>
+                <p><strong>Designation:</strong> <%= emp.designation %></p>
+                <p><strong>Location:</strong> <%= emp.location %></p>
+                <p><strong>Salary:</strong> ₹<%= emp.salary %></p>
+              </div>
+              <div>
+                <a href="/basic/edit/<%= emp.id %>" class="btn btn-outline-success btn-rounded me-2">Edit</a>
+                <a href="/basic/delete/<%= emp.id %>" class="btn btn-outline-danger btn-rounded">Delete</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
